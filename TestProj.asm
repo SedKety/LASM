@@ -2,15 +2,12 @@
 .model flat, stdcall
 option casemap :none
 
-
-include \masm32\include\kernel32.inc
-include \masm32\include\masm32.inc
-includelib \masm32\lib\kernel32.lib
-includelib \masm32\lib\masm32.lib
+include \masm32\include\masm32rt.inc
 
 
 ; All variables are defined in here.
 .data
+
     question db "What is 10 + 2?", 13, 10, 0 ; The question the user will be asked
     response db "Nah, incorrect, the answer is NOT: ", 0 ; The response to the user's input(For now)
     final db "You can now stop the process by inputting any character or ", 0 ; The final message sent signifying the end of the program
@@ -18,14 +15,20 @@ includelib \masm32\lib\masm32.lib
     crlf db 13, 10, 0 
     ; 13 = Carriage Return, Back to the start of the line
     ; 10 = Line Feed, Skip to the next line
-    inputBuffer db 128 dup(0)  
-    printValue db 2
+    ; 0 = String terminator, end the string here. DONT FORGET THIS ONE lols
 
+    inputBuffer db 128 dup(0)  ; The variable in which the user's input will be stored, allocates 128 bytes all written as (0)
+    exampleInt db 10
 
+    buttonTitle db "TestBox"
+    buttonCaption db "This is a test :D"
 .code
 
 ; The entry point of the program, like Int main in c, c++, c#
 main:
+
+    invoke MessageBoxA, NULL, addr buttonTitle, addr buttonCaption, MB_OK
+
     ; Ask the question
     invoke StdOut, addr question
 
