@@ -12,8 +12,8 @@ includelib \masm32\lib\masm32.lib
 ; All variables are defined in here.
 .data
     question db "What is 10 + 2?", 13, 10, 0 ; The question the user will be asked
-    response db "Nah, incorrect, the answer is NOT: " ; The response to the user's input(For now)
-    final db "You can now stop the process by inputting any character or " ; The final message sent signifying the end of the program
+    response db "Nah, incorrect, the answer is NOT: ", 0 ; The response to the user's input(For now)
+    final db "You can now stop the process by inputting any character or ", 0 ; The final message sent signifying the end of the program
 
     crlf db 13, 10, 0 
     ; 13 = Carriage Return, Back to the start of the line
@@ -31,11 +31,11 @@ main:
 
     ; Get the input from the user
     invoke StdIn, addr inputBuffer, 128  
-
+    
     ; Give the response to the user, now a straight forward text.
     ; No checking whether or not the inputted amount is equal to or not 12(The answer to the afforementioned question)
     invoke StdOut, addr response
-    
+
     ; Prints the user's input
     invoke StdOut, addr inputBuffer
 
