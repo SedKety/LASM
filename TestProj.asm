@@ -5,49 +5,46 @@ option casemap :none
 include \masm32\include\masm32rt.inc
 
 
-; All variables are defined in here.
+; All variables/identifiers are defined in here.
 .data
+    ; Responses
+    rightAnswer db "You are... correct! Congratulations, you are now a proffessional mathematician", 13, 10, 0; Carriage Return, Line Feed, String Terminator/NULL
+    wrongAnswer db "You are... sadly not correct. Better luck next time buddy!", 13, 10, 0 ; Carriage Return, Line Feed, String Terminator/NULL
 
-    question db "What is 10 + 2?", 13, 10, 0 ; The question the user will be asked
-    response db "Nah, incorrect, the answer is NOT: ", 0 ; The response to the user's input(For now)
-    final db "You can now stop the process by inputting any character or ", 0 ; The final message sent signifying the end of the program
+    ; Button identifiers
+    buttonTitle db "Question", 0; String terminator/NULL
+    buttonCaption db "Is 10 + 2 = 12", 0 ; String terminator/NULL
 
-    crlf db 13, 10, 0 
-    ; 13 = Carriage Return, Back to the start of the line
-    ; 10 = Line Feed, Skip to the next line
-    ; 0 = String terminator, end the string here. DONT FORGET THIS ONE lols
-
-    inputBuffer db 128 dup(0)  ; The variable in which the user's input will be stored, allocates 128 bytes all written as (0)
-    exampleInt db 10
-
-    buttonTitle db "TestBox"
-    buttonCaption db "This is a test :D"
+    ; Buffers
+    inputBuffer db 16 dup(0) ; Make an inputbuffer. 16 bytes, all allocated as 0(Aka: NULL)
 .code
 
 ; The entry point of the program, like Int main in c, c++, c#
 main:
 
-    invoke MessageBoxA, NULL, addr buttonTitle, addr buttonCaption, MB_OK
+    ;Create a simple messagebox(OwnerWindow, Caption, Title, BehaviorType)
+    invoke MessageBoxA, NULL, addr buttonCaption, addr buttonTitle, MB_YESNO 
 
-    ; Ask the question
-    invoke StdOut, addr question
+    ; The eax register will be set to 6 if the yes button is pressed
+    cmp eax, 6
+    je clicked_yes
 
-    ; Get the input from the user
-    invoke StdIn, addr inputBuffer, 128  
-    
-    ; Give the response to the user, now a straight forward text.
-    ; No checking whether or not the inputted amount is equal to or not 12(The answer to the afforementioned question)
-    invoke StdOut, addr response
+    ; The eax register will be set to 7 if the no button is pressed
+    cmp eax, 7
+    je clicked_no
 
-    ; Prints the user's input
-    invoke StdOut, addr inputBuffer
+; Label that is called when the eax register is equal to 6(yes)
+clicked_yes:
+    invoke StdOut, addr rightAnswer
+    jmp quit_program
 
-    ; Shove funny numbers into StdOut to make it aight for the next StdOut
-    invoke StdOut, addr crlf
+; Label that is called when the eax register is equal to 7(no)
+clicked_no:
+    invoke StdOut, addr wrongAnswer
+    jmp quit_program
 
-    ; Repeat so the process doesnt stop 
-    invoke StdIn, addr inputBuffer, 128  
-    
-    ; After second input is given the process will stop
-    invoke ExitProcess, 1
-end main
+
+; Finally, quit the program
+quit_program:
+    invoke StdIn, addr inputBuffer, 16
+    end main

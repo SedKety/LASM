@@ -1,0 +1,12 @@
+
+variables = identifiers
+functions = labels
+
+
+
+
+
+    ascii code:
+     13 = Carriage Return, Back to the start of the line
+     10 = Line Feed, Skip to the next line
+     0 = String terminator, end the string here. DONT FORGET THIS ONE lols
