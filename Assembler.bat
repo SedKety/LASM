@@ -32,5 +32,5 @@ move "%projectName%.obj" "./Output"
 move "%projectName%.exe" "./Output"
 
 echo.
-echo Done. Press any key to exit.
+echo Done assembling. Press any key to exit.
 pause >nul
