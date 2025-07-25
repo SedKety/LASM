@@ -17,21 +17,23 @@ include \masm32\include\masm32rt.inc
 
     ; Buffers
     inputBuffer db 16 dup(0) ; Make an inputbuffer. 16 bytes, all allocated as 0(Aka: NULL)
+
 .code
 
-; The entry point of the program, like Int main in c, c++, c#
+; The entry point of the program, like int main in c, c++, c#
 main:
 
     ;Create a simple messagebox(OwnerWindow, Caption, Title, BehaviorType)
     invoke MessageBoxA, NULL, addr buttonCaption, addr buttonTitle, MB_YESNO 
 
+
     ; The eax register will be set to 6 if the yes button is pressed
     cmp eax, 6
-    je clicked_yes
+    je clicked_yes ; Jump to clicked_no if eax equals 7 (ZF in the EFLAGS register is set to 1 after cmp)
 
     ; The eax register will be set to 7 if the no button is pressed
     cmp eax, 7
-    je clicked_no
+    je clicked_no ; Jump to clicked_no if eax equals 7 (ZF in the EFLAGS register is set to 1 after cmp)
 
 ; Label that is called when the eax register is equal to 6(yes)
 clicked_yes:

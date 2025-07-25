@@ -1,0 +1,38 @@
+Hello, in this file ill write down asm terminology to make it clearer for me
+
+
+-----> <Terms used in the entirety of the language>
+ALLROUND{
+
+(identifiers) = variables, defined in the .data section
+(labels) = Pointers to sections of code which can be referenced by name
+(Register) = A small, high-speed storage location inside the CPU used to hold data temporarily.
+             Registers are used for arithmetic, logic, memory access, and control flow operations.
+             Cross-label storage access can be done by usage of registers
+
+             Examples in 32-bit (MASM32):
+             - General-purpose: eax, ebx, ecx, edx
+             - Index/pointer: esi, edi, esp (stack pointer), ebp (base pointer)
+             - Special: eip (instruction pointer), eflags (status flags)
+
+             Each register is 32 bits wide in MASM32, but parts of each can be accessed separately:
+             - eax = full 32-bit register
+             - ax  = lower 16 bits of eax
+             - al  = lower 8 bits of ax
+             - ah  = upper 8 bits of ax
+
+             (Same applies to ebx/bx/bl/bh, ecx/cx/cl/ch, edx/dx/dl/dh)
+
+             Registers are faster than memory and are the main tools used in assembly operations.
+
+
+}
+
+-----> <Terms used in math>
+MATH{
+
+(signed) = can go into the negatives(-128-127)
+(unsigned) = can NOT go into the negatives(0-255)
+
+}
+

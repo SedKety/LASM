@@ -1,0 +1,6 @@
+Hello, in this file i write down all the ascii code numbers that i find important, and needed somewhere to be stored to prevent countless re-googling
+
+(0) = String terminator, end the string here. VERY important, almost any and every string issue is caused by this
+(10) = Line Feed, Skip to the next line
+(13) = Carriage Return, Back to the start of the line
+

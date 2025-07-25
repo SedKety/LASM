@@ -1,0 +1,41 @@
+Hello, in this file i will describe all the functions that (to me) are very usefull 
+
+
+StdOut(Var1(Adress of = String)) = An output to the terminal, it writes the string to the terminal, the StdOut function ends when it encounters the ascii character for NULL(0)
+
+StdIn(Var1(Buffer(String)), Var2(The maximum amount of bytes it can safely write to, so the length of Var1's allocated memory)) = {
+Takes the input from the terminal, like the string "hello" and stores it within the confines of var1, the string buffer.
+} 
+
+
+
+cmp(Var1, Var2) = Compare statement, it sets flags in the EFLAGS register, but doesnt return anything. it does a single math operation that goes as the following,  Var1 - Var2.  {
+    It then switches the flags based on:
+(ZF) = Var1 - Var2 = 0
+(CF) = 1 if Var1 < Var2 (unsigned). indicates a borrow due to underflow"
+(SF) = Result is in the negative (Signed)
+(OF) = Result exceeds the counting-bounds of the register's memory(in this case, a maximum of 32 bits, since working within MASM32), where the result is < -2,147,483,648 || > 2,147,483,647
+}
+
+
+je(Label) = Jump if equal statement, jumps if the ZF flag in the EFLAGS register is 1, example{
+
+Example where it is equal
+main:
+      cmp 7, 7   (These two are equal, so the remainder of the difference is 0, thus the ZF(Zero Flag) is set to 1)
+      je random_example_label (this will now be executed as the ZF flag is set to 1)
+
+random_example_label:
+(anything in here will be executed)
+
+end main
+<---------------------------------------------------------------------------------------------------------------------->
+main:
+      cmp 7, 5   (These two are unequal, so the remainder of the difference is 2, thus the ZF(Zero Flag) remains at 0)
+      je random_example_label (this will not jump as the ZF is NOT 0)
+
+random_example_label:
+(anything in here will NOT be executed, unless it is specifically triggered)
+
+end main
+}
