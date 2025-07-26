@@ -2,7 +2,7 @@
 setlocal
 
 
-set projectName=TestProj
+set projectName=CurTestFile
 path="C:\Users\nobem\Documents\RandomProgramming\Assembly\Learning\LASM"
 cd /d "C:\Users\nobem\Documents\RandomProgramming\Assembly\Learning\LASM"
 

@@ -9,8 +9,9 @@ Takes the input from the terminal, like the string "hello" and stores it within 
 
 
 
-cmp(Var1, Var2) = Compare statement, it sets flags in the EFLAGS register, but doesnt return anything. it does a single math operation that goes as the following,  Var1 - Var2.  {
-    It then switches the flags based on:
+cmp(Var1, Var2) = Compare statement, it sets flags in the EFLAGS register, but doesnt return anything. it does a single math operation that goes as the following,  Var1 - Var2. 
+{
+    It then switches the flags based on the following equations: 
 (ZF) = Var1 - Var2 = 0
 (CF) = 1 if Var1 < Var2 (unsigned). indicates a borrow due to underflow"
 (SF) = Result is in the negative (Signed)
@@ -18,7 +19,7 @@ cmp(Var1, Var2) = Compare statement, it sets flags in the EFLAGS register, but d
 }
 
 
-je(Label) = Jump if equal statement, jumps if the ZF flag in the EFLAGS register is 1, example{
+je(Var1(Label)) = Jump if equal statement, jumps if the ZF flag in the EFLAGS register is 1, example{
 
 Example where it is equal
 main:
@@ -38,4 +39,15 @@ random_example_label:
 (anything in here will NOT be executed, unless it is specifically triggered)
 
 end main
+}
+
+
+ ShellExecute(Var1, Var2, Var3, Var4, Var5, Var6), Executes the .exe file inputted as Var3 
+ {
+    (HWND hwn ) = handle to parent window (can be NULL)
+    (LPCSTR lpOperation) = operation: "open", "edit", "print", etc.
+    (LPCSTR lpFile) = path to file or program
+    (LPCSTR lpParameters) = command-line arguments (optional)
+    (LPCSTR lpDirectory)   working directory (optional)
+    (INT nShowCmd) = show window mode (like: SW_SHOWNORMAL)
 }

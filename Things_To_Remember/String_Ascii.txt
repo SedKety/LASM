@@ -1,0 +1,28 @@
+Hello, in this file i write down all the ascii code numbers that i find important, and needed somewhere to be stored to prevent countless re-googling
+
+(0) = String terminator, end the string here. VERY important, almost any and every string issue is caused by this
+(10) = Line Feed, Skip to the next line
+(13) = Carriage Return, Back to the start of the line
+
+ascii values for integers(0-9) = {
+    (0) = 48
+    (1) = 49
+    (2) = 50
+    (3) = 51
+    (4) = 52
+    (5) = 53
+    (6) = 54
+    (7) = 55
+    (8) = 56
+    (9) = 57
+}
+
+to parse an int from an string just do = {
+
+    var1 = "2" ; raw ascii value = 50
+    
+    mov bl, addr var1  ; Move "ar1" to bl register
+    sub bl, '0'   ; Subtract ASCII value of '0' (48)
+    ; bl(50) - '0'(48) = 2, so bl holds 2
+
+}
