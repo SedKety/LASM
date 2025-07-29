@@ -1,0 +1,17 @@
+
+In this file ill write down things to do when it no work
+
+
+TYPELESS : {
+
+    1. Check if you used addr instead of thename of the identifier? 
+}
+
+ARRAY : {
+    1. Did you accidentally put the wrong int/char before dup(0), like: var db 0, 2, 5, 3 dup(0) being = 0, 2, 5, 3, 0, 0, 0. instead of 0, 2, 5, 3
+}
+
+STRING : {
+    1. Did you forget to use 13, 10 to go to the next line and type at the start?
+    2. Did you terminate your string by placing an 0 behind it?
+}
