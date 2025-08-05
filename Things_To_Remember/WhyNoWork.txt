@@ -15,3 +15,7 @@ STRING : {
     1. Did you forget to use 13, 10 to go to the next line and type at the start?
     2. Did you terminate your string by placing an 0 behind it?
 }
+
+MASM : {
+    1. STDOUT: Did you forget to include the amount of safe memory that can be done?
+}

@@ -1,0 +1,19 @@
+
+
+we'll need 2 loops, as the time complexity of selection sort is noted as n^2
+i'll create an innerloop, and an outerloop. 
+one that encompasses the array itself and the other that triggers the other one while resetting the values for the next loop
+
+so:
+
+outerloop:
+-Saves the smallest value from the innerloop
+-Increment the outerloop counter by one
+-Resets the values used in the innerloop 4
+
+
+innerloop:
+
+-check if the element at the current position[arrayptr + outerloop] is smaller than the smallest set value,
+-Swap if so. 
+-Increment the innerloop by one

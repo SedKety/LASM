@@ -1,28 +1,23 @@
 .386
-include \masm32\include\masm32rt.inc
 
 .data ; The section to hold identifiers
 
    arrayToSort db 9, 1, 5, 6, 3
    arraySize equ $ - arrayToSort
 
-.code ; The section that holds all the code
+   noSwapString db "No need to swap, the number after this is higher then the previous one.", 0, 13, 10
+   swapString db "Had to swap, the number after this is less then the previous one", 0, 13, 10
 
-; ECX = outer_loop counter
-; EDX = inner_loop counter
+.code ; The section that holds all the code
 
 main:
 
    mov ecx, arraySize
    dec ecx ; Remove one from the ecx, this will be used to check whether or not we have completed the for loop
 
-
 outer_loop:
    mov esi, 0 ; Pointer to the current iteration of the array
    mov edx, ecx
-   cmp edx, 0
-   jnz end_of_sorting
-
 
 inner_loop:
    mov al, [arrayToSort + esi] ; A pointer to the current iterator's memory address + the offset of esi 
@@ -33,6 +28,7 @@ inner_loop:
 
 
 no_swap: ; Called when the next number is bigger then the previous number
+   invoke StdOut, noSwapString
    inc esi ; Increase the current iteration of the array by 1
    dec edx ; Remove 1 from the arraySize checker, to see if we have reached the end of the array
    cmp edx, 0 ; Check if we have reached the end of the arrray
@@ -41,13 +37,13 @@ no_swap: ; Called when the next number is bigger then the previous number
    dec ecx ; Remove one from the current arraysize, because the largest number has already been pushed to the back
    jnz inner_loop 
 
-swap: ; Called when the next number is smaller than the previous one 
-   mov [arrayToSort + esi], bl 
-   mov [arrayToSort + esi + 1], al
-
-
-end_of_sorting:
    invoke ExitProcess, 0
 
+swap: ; Called when the next number is smaller than the previous one 
+
+
+   invoke StdOut, swapString
+   mov [arrayToSort + esi], bl 
+   mov [arrayToSort + esi + 1], al
 
 end main

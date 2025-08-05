@@ -1,0 +1,13 @@
+
+jmp = Just jumps to the label
+
+JL = Jump if less
+jle = jump if less or equal
+
+JE = jump if equal
+
+jg = jump if greater
+jge = jump if greater or equal
+
+jz = jump if Zero
+jnz = jump if not zero
